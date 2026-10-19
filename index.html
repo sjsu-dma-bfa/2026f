@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital [afterimage]</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="background-stage" aria-hidden="true">
+    <div class="background-wash"></div>
+  </div>
+  <div class="site-shell">
+    <div class="page-graphics" aria-hidden="true">
+      <div class="page-glow glow-a"></div>
+      <div class="page-glow glow-b"></div>
+      <div class="page-glow glow-c"></div>
+      <div class="page-signal signal-a"></div>
+      <div class="page-signal signal-b"></div>
+      <div class="page-pixels pixels-a"></div>
+      <div class="page-pixels pixels-b"></div>
+      <span class="page-cross cross-a">+</span>
+      <span class="page-cross cross-b">+</span>
+      <span class="page-cross cross-c">+</span>
+    </div>
+    <div class="paper-texture" id="paper-texture" aria-hidden="true"></div>
+    <header class="topline">
+      <a class="brand" href="#top">Digital [afterimage]</a>
+      <span class="status">/archive/main</span>
+    </header>
+
+    <main id="top">
+      <section class="hero" data-background="front" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">/ digital / afterimage /</p>
+          <h1 id="page-title">Digital <span>[afterimage]</span></h1>
+          <div class="hero-links">
+            <a class="circle-link" href="#work"><img class="circle-art" src="assets/circle-1.png" alt=""><span>Selected Work</span></a>
+            <a class="circle-link" href="#contact"><img class="circle-art" src="assets/circle-2.png" alt=""><span>Contact</span></a>
+          </div>
+        </div>
+        <div class="three-stage" id="three-stage" aria-label="Interactive 3D object"></div>
+        <p class="hero-hint">drag object to rotate<br>scroll to enter archive</p>
+      </section>
+
+      <section class="projects" id="work" data-background="work" aria-label="Selected Work">
+        <div class="section-label">Selected work</div>
+        <div class="project-list" id="project-list"></div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="section-label">Contact</div>
+        <a href="mailto:hello@example.com">hello@example.com</a>
+      </section>
+    </main>
+
+    <nav class="edge-nav" aria-label="Main navigation">
+      <button class="nav-tab" type="button" aria-expanded="false">menu</button>
+        <div class="nav-panel">
+        <a href="#top">Digital [afterimage]</a>
+        <label class="search-label" for="project-search">Search projects</label>
+        <input id="project-search" type="search" placeholder="type to filter" autocomplete="off">
+        <div class="menu-project-list" id="menu-project-list"></div>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hover-preview" aria-hidden="true"><span>blank asset</span></div>
+
+    <footer class="footer-line">
+      <span>scroll to browse</span>
+      <span>© 2026</span>
+    </footer>
+  </div>
+  <script type="module" src="script/script.js"></script>
+</body>
+</html>
