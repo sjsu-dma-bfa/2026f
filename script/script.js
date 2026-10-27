@@ -77,7 +77,7 @@ if (afterimageTitle) {
 
 const projects = [
   ['01', 'AIDEN KHALEK', 'selected work'], ['02', 'ANDREA ARELLANO GARCÍA', 'selected work'], ['03', 'AUDREY WAI', 'selected work'],
-  ['04', 'BRANDON VUONG', 'selected work'], ['05', 'DARIA OLKOVA', 'selected work'], ['06', 'DAVID PEREZ GARCIA', 'selected work'],
+  ['04', 'BRANDON VUONG', 'selected work'], ['05', 'DARIA ORLOVA', 'selected work'], ['06', 'DAVID PEREZ GARCIA', 'selected work'],
   ['07', 'DENIELLE SABILAY', 'selected work'], ['08', 'EMILY CHAING', 'selected work'], ['09', 'ETHAN KAMIGAKI', 'selected work'],
   ['10', 'EVELYN "EVEE" PALMENO', 'selected work'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work'], ['12', 'JOVANNY LICONA', 'selected work'],
   ['13', 'JUPITER KASLER', 'selected work'], ['14', 'KATY YURASH', 'selected work'], ['15', 'KYRA JONES', 'selected work'],
