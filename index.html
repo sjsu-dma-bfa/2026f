@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +14,24 @@
     }
   </script>
 </head>
-<body>
+
+<body class="mode-light">
   <div class="background-stage" aria-hidden="true">
+    <video class="video-background" id="background-video" autoplay muted loop playsinline preload="auto">
+      <source id="background-video-source" src="assets/spikes-bg.mp4" type="video/mp4">
+    </video>
     <div class="background-wash"></div>
   </div>
+  <svg class="svg-filters" aria-hidden="true" width="1" height="1" focusable="false">
+    <defs>
+      <filter id="liquid-glass-ripple" x="-18%" y="-18%" width="136%" height="136%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency=".012 .028" numOctaves="3" seed="8" result="rippleNoise">
+        </feTurbulence>
+        <feDisplacementMap id="liquid-glass-displacement" in="SourceGraphic" in2="rippleNoise" scale="22"
+          xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+      </filter>
+    </defs>
+  </svg>
   <div class="site-shell">
     <div class="page-graphics" aria-hidden="true">
       <div class="page-glow glow-a"></div>
@@ -40,11 +55,17 @@
       <section class="hero" data-background="front" aria-labelledby="page-title">
         <div class="hero-copy">
           <p class="eyebrow">/ digital / afterimage /</p>
-          <h1 id="page-title">Digital <span>[afterimage]</span></h1>
+          <h1 id="page-title">Digital <span class="afterimage-title">[afterimage]</span></h1>
           <div class="hero-links">
-            <a class="circle-link" href="#work"><img class="circle-art" src="assets/circle-1.png" alt=""><span>Selected Work</span></a>
-            <a class="circle-link" href="#contact"><img class="circle-art" src="assets/circle-2.png" alt=""><span>Contact</span></a>
+            <a class="circle-link" href="#work"><img class="circle-art" src="assets/circle-1.png" alt=""><span>Selected
+                Work</span></a>
+            <a class="circle-link" href="#contact"><img class="circle-art" src="assets/circle-2.png"
+                alt=""><span>Contact</span></a>
           </div>
+          <label class="iteration-control" for="iteration-slider">
+            <span>Slider</span>
+            <input id="iteration-slider" type="range" min="4" max="32" step="1" value="18">
+          </label>
         </div>
         <div class="three-stage" id="three-stage" aria-label="Interactive 3D object"></div>
         <p class="hero-hint">drag object to rotate<br>scroll to enter archive</p>
@@ -52,19 +73,39 @@
 
       <section class="projects" id="work" data-background="work" aria-label="Selected Work">
         <div class="section-label">Selected work</div>
-        <div class="project-list" id="project-list"></div>
+        <div class="project-list" id="project-list">
+          <canvas class="glass-canvas" id="glass-canvas" aria-hidden="true"></canvas>
+          <video class="glass-video" id="glass-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source id="glass-video-source" src="assets/spikes-bg.mp4" type="video/mp4">
+          </video>
+        </div>
       </section>
 
       <section class="contact" id="contact">
         <div class="section-label">Contact</div>
-        <a href="mailto:hello@example.com">hello@example.com</a>
+        <a class="instagram-link" href="https://www.instagram.com/digital.after.image/" target="_blank" rel="noreferrer"
+          aria-label="Digital Afterimage on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <circle cx="17.5" cy="6.5" r="1.15" fill="currentColor"></circle>
+          </svg>
+          <span class="instagram-handle">@digital.after.image</span>
+          <span class="sr-only">Instagram</span>
+        </a>
       </section>
     </main>
 
     <nav class="edge-nav" aria-label="Main navigation">
       <button class="nav-tab" type="button" aria-expanded="false">menu</button>
-        <div class="nav-panel">
+      <div class="nav-panel">
         <a href="#top">Digital [afterimage]</a>
+        <div class="mode-switcher" role="group" aria-label="Visual mode">
+          <span class="mode-label">Visual mode</span>
+          <button type="button" data-mode="dark" aria-pressed="false">Dark</button>
+          <button type="button" data-mode="light" aria-pressed="true">Light</button>
+          <button type="button" data-mode="blank" aria-pressed="false">Blank</button>
+        </div>
         <label class="search-label" for="project-search">Search projects</label>
         <input id="project-search" type="search" placeholder="type to filter" autocomplete="off">
         <div class="menu-project-list" id="menu-project-list"></div>
@@ -81,4 +122,5 @@
   </div>
   <script type="module" src="script/script.js"></script>
 </body>
+
 </html>
