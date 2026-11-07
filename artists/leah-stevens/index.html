@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../../assets/fav_icon.png">
+  <title>LEAH STEVENS / Digital [afterimage]</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/artist.css">
+</head>
+<body class="artist-page mode-light">
+  <div class="background-stage" aria-hidden="true">
+    <video class="video-background" id="artist-video" autoplay muted loop playsinline preload="auto" src="../../assets/spikes-bg.mp4"></video>
+    <div class="background-wash"></div>
+  </div>
+  <svg class="svg-filters" aria-hidden="true" width="1" height="1" focusable="false"><defs><filter id="liquid-glass-ripple" x="-18%" y="-18%" width="136%" height="136%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".012 .028" numOctaves="3" seed="8" result="rippleNoise"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="rippleNoise" scale="22" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs></svg>
+  <div class="site-shell">
+    <header class="topline">
+      <a class="brand" href="../../index.html">Digital [afterimage]</a>
+      <span class="status">/ artist 17 / leah-stevens /</span>
+    </header>
+    <nav class="artist-modes" aria-label="Display mode">
+      <button type="button" data-mode="light">Light</button>
+      <button type="button" data-mode="dark">Dark</button>
+      <button type="button" data-mode="blank">Blank</button>
+    </nav>
+    <main class="artist-main">
+      <a class="artist-back" href="../../index.html#work">← Selected Work</a>
+      <section class="artist-hero">
+        <div>
+          <p class="eyebrow">/ selected work / 17 /</p>
+          <h1>LEAH STEVENS</h1>
+          <p class="artist-project-title">Fragments</p>
+        </div>
+        <div class="artist-headshot-frame"><img class="artist-headshot" src="../../assets/artists/leah-stevens/headshot.webp" alt="LEAH STEVENS headshot"></div>
+      </section>
+      <section class="artist-info">
+        <article>
+          <h2>Artist statement / bio</h2>
+          <p class="artist-statement">Leah Stevens’s work explores personal memory, identity, and the connections people build through art. Working primarily with digital illustration, animation, and graphic design, she draws inspiration from everyday experiences and nostalgic memories that have shaped how she sees herself and relates to others. Growing up, creating became a way for Stevens to express herself and share something personal with the people around her. As her interests and experiences have changed, her art has grown alongside them. She sees her art practice as a continuous process of discovering who she is and how her identity may evolve in the future. Using tools such as Procreate and After Effects, Stevens combines hand-drawn imagery with structured compositions. Her work brings digital art into physical spaces, creating opportunities for viewers to connect with her memories and reflect on the experiences that have shaped their own identities.</p>
+        </article>
+        <article>
+          <h2>Project</h2>
+          <p class="artist-project-meta">Fragments<br><br>17 / Digital [afterimage]</p>
+        </article>
+      </section>
+      <section class="artist-artwork">
+        <h2>Artwork statement</h2>
+        <p>&quot;Fragments&quot; is a short, looping animation that pieces together significant memories of the artist growing up with art. Hand-drawn in Procreate and animated in After Effects, these scenes trace how creativity has shaped her identity and current work. Projected into a physical picture frame, the animation brings preserved moments into motion, reflecting how quickly time passes while memories continue to influence the present. Through this collection of personal experiences, &quot;Fragments&quot; invites viewers to reflect on their own formative memories and the role art or creativity has played in their lives.</p>
+      </section>
+      <section class="artist-progress">
+        <h2>Work in progress</h2>
+        <div class="artist-gallery"><figure><a class="lightbox-trigger" href="../../assets/artists/leah-stevens/progress/01.webp" data-caption="LEAH STEVENS work in progress image"><img src="../../assets/artists/leah-stevens/progress/01.webp" alt="LEAH STEVENS work in progress image" loading="lazy"></a></figure><figure><a class="lightbox-trigger" href="../../assets/artists/leah-stevens/progress/02.webp" data-caption="LEAH STEVENS work in progress image"><img src="../../assets/artists/leah-stevens/progress/02.webp" alt="LEAH STEVENS work in progress image" loading="lazy"></a></figure><figure class="artist-video-card"><video controls playsinline preload="metadata"><source src="../../assets/artists/leah-stevens/progress/video-01.mp4" type="video/mp4">Your browser does not support this video.</video></figure><figure class="artist-video-card"><video controls playsinline preload="metadata"><source src="../../assets/artists/leah-stevens/progress/video-02.mp4" type="video/mp4">Your browser does not support this video.</video></figure></div>
+      </section>
+    </main>
+    <footer class="footer-line artist-footer">
+      <a href="../../index.html#work">Back to Selected Work</a>
+      <a href="../../index.html#contact">Contact</a>
+    </footer>
+  </div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded work in progress image">
+    <button class="lightbox-close" type="button" aria-label="Close image">Close</button>
+    <img id="lightbox-image" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+  <script src="../../script/artist.js"></script>
+</body>
+</html>

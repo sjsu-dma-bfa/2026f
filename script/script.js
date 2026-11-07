@@ -4,7 +4,6 @@ import { createSculpture } from 'https://cdn.jsdelivr.net/npm/shader-park-core@0
 
 const edgeNav = document.querySelector('.edge-nav');
 const navTab = document.querySelector('.nav-tab');
-const preview = document.querySelector('.hover-preview');
 const projectList = document.querySelector('#project-list');
 const menuProjectList = document.querySelector('#menu-project-list');
 const projectSearch = document.querySelector('#project-search');
@@ -25,7 +24,92 @@ const circleFrames = ['assets/circle-1.png', 'assets/circle-2.png', 'assets/circ
 let glassLensActive = false;
 let glassLensMouse = [0, 0];
 let glassLensTitle = null;
-let resizeGlassLens = () => { };
+let resizeGlassLens = () => {};
+
+function startGridTransition(href) {
+  if (document.querySelector('.grid-transition')) return;
+  sessionStorage.setItem('afterimage-grid-reveal', '1');
+  const columns = Math.ceil(window.innerWidth / 72);
+  const rows = Math.ceil(window.innerHeight / 72);
+  const overlay = document.createElement('div');
+  overlay.className = 'grid-transition';
+  overlay.style.setProperty('--grid-columns', columns);
+  overlay.style.setProperty('--grid-rows', rows);
+  overlay.insertAdjacentHTML('beforeend', '<div class="grid-transition-status"><span>Loading</span></div>');
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < columns; col += 1) {
+      const tile = document.createElement('span');
+      tile.className = 'grid-transition-tile';
+      tile.style.setProperty('--row', row);
+      tile.style.setProperty('--col', col);
+      const index = row * columns + col;
+      const entryDirection = index % 4;
+      const entryValues = [
+        ['0px', '112vh', '0deg'],
+        ['0px', '-112vh', '180deg'],
+        ['-112vw', '0px', '-90deg'],
+        ['112vw', '0px', '90deg']
+      ][entryDirection];
+      tile.style.setProperty('--entry-x', entryValues[0]);
+      tile.style.setProperty('--entry-y', entryValues[1]);
+      tile.style.setProperty('--entry-rotate', entryValues[2]);
+      overlay.appendChild(tile);
+    }
+  }
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => overlay.classList.add('is-active'));
+  window.setTimeout(() => window.location.assign(href), 1100);
+}
+
+function revealGridTransition() {
+  if (sessionStorage.getItem('afterimage-grid-reveal') !== '1') return;
+  sessionStorage.removeItem('afterimage-grid-reveal');
+  const columns = Math.ceil(window.innerWidth / 72);
+  const rows = Math.ceil(window.innerHeight / 72);
+  const overlay = document.createElement('div');
+  overlay.className = 'grid-transition is-active';
+  overlay.style.setProperty('--grid-columns', columns);
+  overlay.style.setProperty('--grid-rows', rows);
+  overlay.insertAdjacentHTML('beforeend', '<div class="grid-transition-status"><span>Loading</span></div>');
+  const exitDirections = [
+    ['0px', '-112vh', '180deg'],
+    ['0px', '112vh', '0deg'],
+    ['-112vw', '0px', '-90deg'],
+    ['112vw', '0px', '90deg']
+  ];
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < columns; col += 1) {
+      const tile = document.createElement('span');
+      tile.className = 'grid-transition-tile';
+      tile.style.setProperty('--row', row);
+      tile.style.setProperty('--col', col);
+      const exitValues = exitDirections[(row * columns + col) % exitDirections.length];
+      tile.style.setProperty('--entry-x', '0px');
+      tile.style.setProperty('--entry-y', '0px');
+      tile.style.setProperty('--entry-rotate', '0deg');
+      tile.style.setProperty('--exit-x', exitValues[0]);
+      tile.style.setProperty('--exit-y', exitValues[1]);
+      tile.style.setProperty('--exit-rotate', exitValues[2]);
+      overlay.appendChild(tile);
+    }
+  }
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('is-revealing')));
+  window.setTimeout(() => overlay.remove(), 1900);
+}
+
+revealGridTransition();
+
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href]');
+  if (!link || link.target === '_blank' || link.classList.contains('lightbox-trigger')) return;
+  const destination = new URL(link.href, window.location.href);
+  if (destination.origin !== window.location.origin) return;
+  if (destination.pathname === window.location.pathname && destination.hash) return;
+  if (destination.pathname === window.location.pathname) return;
+  event.preventDefault();
+  startGridTransition(destination.href);
+});
 
 function getStableTitleLeft(title) {
   let left = 0;
@@ -76,16 +160,16 @@ if (afterimageTitle) {
 }
 
 const projects = [
-  ['01', 'AIDEN KHALEK', 'selected work'], ['02', 'ANDREA ARELLANO GARCÍA', 'selected work'], ['03', 'AUDREY WAI', 'selected work'],
-  ['04', 'BRANDON VUONG', 'selected work'], ['05', 'DARIA ORLOVA', 'selected work'], ['06', 'DAVID PEREZ GARCIA', 'selected work'],
-  ['07', 'DENIELLE SABILAY', 'selected work'], ['08', 'EMILY CHAING', 'selected work'], ['09', 'ETHAN KAMIGAKI', 'selected work'],
-  ['10', 'EVELYN "EVEE" PALMENO', 'selected work'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work'], ['12', 'JOVANNY LICONA', 'selected work'],
-  ['13', 'JUPITER KASLER', 'selected work'], ['14', 'KATY YURASH', 'selected work'], ['15', 'KYRA JONES', 'selected work'],
-  ['16', 'LAUREN ANDERSON', 'selected work'], ['17', 'LIAH STEVENS', 'selected work'], ['18', 'NABEEHA AHSAN', 'selected work'],
-  ['19', 'NGAN VU', 'selected work'], ['20', 'NHAT MINH LE', 'selected work'], ['21', 'NOAH FEKRE', 'selected work'],
-  ['22', 'PHIN NGUYEN', 'selected work'], ['23', 'ROSALVA JIMÉNEZ MARTÍNEZ', 'selected work'], ['24', 'RYAN NIKOPOUR', 'selected work'],
-  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work'], ['26', 'SYDNEY ANN-ETQ', 'selected work'], ['27', 'SYDNEY SILVA', 'selected work'],
-  ['28', 'TPISTA HUYH', 'selected work'], ['29', 'WENYU LIN', 'selected work'], ['30', 'YANHENG MA', 'selected work'], ['31', 'ZUKA ISTANBOOY', 'selected work']
+  ['01', 'AIDEN KHALECK', 'selected work', 'aiden-khaleck'], ['02', 'ANDREA ARELLANO GARCÍA', 'selected work', 'andrea-arellano-garcia'], ['03', 'AUDREY WAI', 'selected work', 'audrey-wai'],
+  ['04', 'BRANDON VUONG', 'selected work', 'brandon-vuong'], ['05', 'DARIA ORLOVA', 'selected work', 'daria-orlova'], ['06', 'DAVID PEREZ GARCIA', 'selected work', 'david-perez-garcia'],
+  ['07', 'DENIELLE SABILAY', 'selected work', 'denielle-sambilay'], ['08', 'EMILY CHAING', 'selected work', 'emily-chaing'], ['09', 'ETHAN KAMIGAKI', 'selected work', 'ethan-kamigaki'],
+  ['10', 'EVELYN PALMENO', 'selected work', 'evelyn-evee-palmeno'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work', 'jocelyn-monreal-velazquez'], ['12', 'JOVANNY LICONA', 'selected work', 'jovanny-licona'],
+  ['13', 'JUPITER KASLER', 'selected work', 'jupiter-kasler'], ['14', 'KATY YURASH', 'selected work', 'katy-yurash'], ['15', 'KYRA JONES', 'selected work', 'kyra-jones'],
+  ['16', 'LAUREN ANDERSON', 'selected work', 'lauren-anderson'], ['17', 'LEAH STEVENS', 'selected work', 'leah-stevens'], ['18', 'MINH LE', 'selected work', 'minh-le'],
+  ['19', 'NABEEHA AHSAN', 'selected work', 'nabeehan-ahsan'], ['20', 'NGAN VU', 'selected work', 'ngan-vu'], ['21', 'NOH FEKRE', 'selected work', 'noh-fekre'],
+  ['22', 'PHIN NGUYEN', 'selected work', 'phin-nguyen'], ['23', 'ROSALVA JIMÉNEZ', 'selected work', 'rosalva-jimenez-martinez'], ['24', 'RYAN NIKOPOUR', 'selected work', 'ryan-nikopour'],
+  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work', 'sean-cruz-colatriano'], ['26', 'SYDNEY-ANN ETO', 'selected work', 'sydney-ann-etq'], ['27', 'SYDNEY SILVA', 'selected work', 'sydney-silva'],
+  ['28', 'TRISTAN HUYHN', 'selected work', 'tristan-huynh'], ['29', 'WENYU LIN', 'selected work', 'wenyu-lin'], ['30', 'YANHENG MA', 'selected work', 'yanheng-ma'], ['31', 'ZUKA ISTANBOOY', 'selected work', 'zuka-istanbooly']
 ];
 
 function renderProjects(query = '') {
@@ -93,17 +177,13 @@ function renderProjects(query = '') {
   const glassLayers = [...projectList.querySelectorAll('.glass-canvas, .glass-video')];
   projectList.innerHTML = '';
   glassLayers.forEach((layer) => projectList.appendChild(layer));
-  projectList.insertAdjacentHTML('beforeend', filtered.map(([number, title, meta]) => `
-    <a class="project-row" id="project-${number}" href="#project-${number}" data-preview="asset-${number}">
+  projectList.insertAdjacentHTML('beforeend', filtered.map(([number, title, meta, slug]) => `
+    <a class="project-row" id="project-${number}" href="artists/${slug}/" data-preview="asset-${number}">
       <img class="project-frame" src="assets/square-1.png" alt="">
       <span class="project-title">${title}</span>
       <span class="project-meta">${number} / ${meta}</span>
     </a>`).join(''));
-  menuProjectList.innerHTML = filtered.map(([number, title]) => `<a href="#project-${number}">${number} / ${title}</a>`).join('');
-  document.querySelectorAll('.project-row').forEach((row) => {
-    row.addEventListener('mouseenter', () => preview.classList.add('is-visible'));
-    row.addEventListener('mouseleave', () => preview.classList.remove('is-visible'));
-  });
+  menuProjectList.innerHTML = filtered.map(([number, title, meta, slug]) => `<a href="artists/${slug}/">${number} / ${title}</a>`).join('');
   document.querySelectorAll('.project-title').forEach((title) => {
     title.addEventListener('mouseenter', () => {
       glassLensTitle = title;
@@ -144,10 +224,10 @@ function setMode(mode) {
     document.body.classList.add(`mode-${mode}`);
     backgroundVideoSource.src = modes[mode];
     backgroundVideo.load();
-    backgroundVideo.play().catch(() => { });
+    backgroundVideo.play().catch(() => {});
     if (glassVideoSource) glassVideoSource.src = modes[mode];
     glassVideo?.load();
-    glassVideo?.play().catch(() => { });
+    glassVideo?.play().catch(() => {});
   }
   modeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
   window.localStorage.setItem('afterimage-mode', mode);
@@ -393,11 +473,11 @@ const shaderSourceTemplate = function () {
   setStepSize(.9);
   rotateY(-0.1 * time);
   let n = noise(getSpace() * 40 + time + 10000000);
-  let col = normal * .01 * (getRayDirection() + 1) + n * nsin(time);
+  let col = normal*.01*(getRayDirection()+1) +n*nsin(time);
   color(col);
   metal(5);
-  rotateY(time * .5)
-  rotateY(getRayDirection().y * 2 + time * .2)
+  rotateY(time*.5)
+  rotateY(getRayDirection().y*2+time*.2)
   boxFrame(vec3(.6), .02);
   sphere(.2);
 };
@@ -503,7 +583,6 @@ function scheduleNavHide() {
 window.addEventListener('mousemove', (event) => {
   if (window.innerWidth > 700 && event.clientX > window.innerWidth - 80) showNav();
 });
-
 navTab.addEventListener('click', toggleNav);
 edgeNav.addEventListener('mouseleave', scheduleNavHide);
 edgeNav.addEventListener('mouseenter', () => clearTimeout(hideTimer));
@@ -515,11 +594,4 @@ document.querySelectorAll('.nav-panel a').forEach((link) => {
   link.addEventListener('click', () => {
     scheduleNavHide();
   });
-});
-
-window.addEventListener('mousemove', (event) => {
-  if (preview.classList.contains('is-visible')) {
-    preview.style.left = `${event.clientX}px`;
-    preview.style.top = `${event.clientY}px`;
-  }
 });
