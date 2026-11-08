@@ -97,6 +97,13 @@ function revealGridTransition() {
   window.setTimeout(() => overlay.remove(), 1900);
 }
 
+function resetGridTransition() {
+  document.querySelectorAll('.grid-transition').forEach((overlay) => overlay.remove());
+  sessionStorage.removeItem('afterimage-grid-reveal');
+}
+
+window.addEventListener('pageshow', resetGridTransition);
+
 revealGridTransition();
 
 document.addEventListener('click', (event) => {
