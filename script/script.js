@@ -18,9 +18,9 @@ const glassDisplacement = document.querySelector('#liquid-glass-displacement');
 const modeButtons = [...document.querySelectorAll('[data-mode]')];
 const iterationSlider = document.querySelector('#iteration-slider');
 const iterationValue = document.querySelector('#iteration-value');
-const squareFrames = ['assets/square-1.png', 'assets/square-2.png', 'assets/square-3.png', 'assets/square-4.png'];
-const paperFrames = ['assets/paper-1.png', 'assets/paper-2.png', 'assets/paper-3.png'];
-const circleFrames = ['assets/circle-1.png', 'assets/circle-2.png', 'assets/circle-3.png'];
+const squareFrames = ['assets/square-1.webp', 'assets/square-2.webp', 'assets/square-3.webp', 'assets/square-4.webp'];
+const paperFrames = ['assets/paper-1.webp', 'assets/paper-2.webp', 'assets/paper-3.webp'];
+const circleFrames = ['assets/circle-1.webp', 'assets/circle-2.webp', 'assets/circle-3.webp'];
 let glassLensActive = false;
 let glassLensMouse = [0, 0];
 let glassLensTitle = null;
@@ -160,16 +160,16 @@ if (afterimageTitle) {
 }
 
 const projects = [
-  ['01', 'AIDEN KHALECK', 'selected work', 'aiden-khaleck'], ['02', 'ANDREA ARELLANO GARCIA', 'selected work', 'andrea-arellano-garcia'], ['03', 'AUDREY WAI', 'selected work', 'audrey-wai'],
+  ['01', 'AIDEN KHALECK', 'selected work', 'aiden-khaleck'], ['02', 'ANDREA ARELLANO GARCÍA', 'selected work', 'andrea-arellano-garcia'], ['03', 'AUDREY WAI', 'selected work', 'audrey-wai'],
   ['04', 'BRANDON VUONG', 'selected work', 'brandon-vuong'], ['05', 'DARIA ORLOVA', 'selected work', 'daria-orlova'], ['06', 'DAVID PEREZ GARCIA', 'selected work', 'david-perez-garcia'],
   ['07', 'DENIELLE SAMBILAY', 'selected work', 'denielle-sambilay'], ['08', 'EMILY CHAING', 'selected work', 'emily-chaing'], ['09', 'ETHAN KAMIGAKI', 'selected work', 'ethan-kamigaki'],
-  ['10', 'EVELYN (EVEE) PALMENO', 'selected work', 'evelyn-evee-palmeno'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work', 'jocelyn-monreal-velazquez'], ['12', 'JOVANNY LICONA', 'selected work', 'jovanny-licona'],
+  ['10', 'EVELYN PALMENO', 'selected work', 'evelyn-evee-palmeno'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work', 'jocelyn-monreal-velazquez'], ['12', 'JOVANNY LICONA', 'selected work', 'jovanny-licona'],
   ['13', 'JUPITER KASLER', 'selected work', 'jupiter-kasler'], ['14', 'KATY YURASH', 'selected work', 'katy-yurash'], ['15', 'KYRA JONES', 'selected work', 'kyra-jones'],
   ['16', 'LAUREN ANDERSON', 'selected work', 'lauren-anderson'], ['17', 'LEAH STEVENS', 'selected work', 'leah-stevens'], ['18', 'MINH LE', 'selected work', 'minh-le'],
-  ['19', 'NABEEHA AHSAN', 'selected work', 'nabeeha-ahsan'], ['20', 'NGAN VU', 'selected work', 'ngan-vu'], ['21', 'NOH FEKRE', 'selected work', 'noh-fekre'],
-  ['22', 'PHIN NGUYEN', 'selected work', 'phin-nguyen'], ['23', 'ROSALVA JIMÉNEZ MARTÍNEZ', 'selected work', 'rosalva-jimenez-martinez'], ['24', 'RYAN NIKOPOUR', 'selected work', 'ryan-nikopour'],
-  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work', 'sean-cruz-colatriano'], ['26', 'SYDNEY ETO', 'selected work', 'sydney-ann-etq'], ['27', 'SYDNEY SILVA', 'selected work', 'sydney-silva'],
-  ['28', 'TRISTAN HUYNH', 'selected work', 'tristan-huynh'], ['29', 'WENYU LIN', 'selected work', 'wenyu-lin'], ['30', 'YANHENG MA', 'selected work', 'yanheng-ma'], ['31', 'ZUKA ISTANBOOLY', 'selected work', 'zuka-istanbooly']
+  ['19', 'NABEEHA AHSAN', 'selected work', 'nabeehan-ahsan'], ['20', 'NGAN VU', 'selected work', 'ngan-vu'], ['21', 'NOH FEKRE', 'selected work', 'noh-fekre'],
+  ['22', 'PHIN NGUYEN', 'selected work', 'phin-nguyen'], ['23', 'ROSALVA JIMÉNEZ', 'selected work', 'rosalva-jimenez-martinez'], ['24', 'RYAN NIKOPOUR', 'selected work', 'ryan-nikopour'],
+  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work', 'sean-cruz-colatriano'], ['26', 'SYDNEY-ANN ETO', 'selected work', 'sydney-ann-etq'], ['27', 'SYDNEY SILVA', 'selected work', 'sydney-silva'],
+  ['28', 'TRISTAN HUYHN', 'selected work', 'tristan-huynh'], ['29', 'WENYU LIN', 'selected work', 'wenyu-lin'], ['30', 'YANHENG MA', 'selected work', 'yanheng-ma'], ['31', 'ZUKA ISTANBOOY', 'selected work', 'zuka-istanbooly']
 ];
 
 function renderProjects(query = '') {
@@ -179,7 +179,7 @@ function renderProjects(query = '') {
   glassLayers.forEach((layer) => projectList.appendChild(layer));
   projectList.insertAdjacentHTML('beforeend', filtered.map(([number, title, meta, slug]) => `
     <a class="project-row" id="project-${number}" href="artists/${slug}/" data-preview="asset-${number}">
-      <img class="project-frame" src="assets/square-1.png" alt="">
+      <img class="project-frame" src="assets/square-1.webp" alt="">
       <span class="project-title">${title}</span>
       <span class="project-meta">${number} / ${meta}</span>
     </a>`).join(''));

@@ -5,7 +5,7 @@ const lightboxImage = document.querySelector('#lightbox-image');
 const lightboxCaption = document.querySelector('#lightbox-caption');
 const lightboxClose = document.querySelector('.lightbox-close');
 const paperTexture = document.querySelector('#paper-texture');
-const paperFrames = ['../../assets/paper-1.png', '../../assets/paper-2.png', '../../assets/paper-3.png'];
+const paperFrames = ['../../assets/paper-1.webp', '../../assets/paper-2.webp', '../../assets/paper-3.webp'];
 const modeSources = {
   light: '../../assets/spikes-bg.mp4',
   dark: '../../assets/liquid-metal-bg.mp4',
