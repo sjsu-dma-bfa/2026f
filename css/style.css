@@ -224,7 +224,7 @@ body.mode-blank .mode-switcher button[aria-pressed="true"] { background: var(--s
   .project-frame { right: -1vw; width: 32vw; height: 34vw; }
   .contact { grid-template-columns: 1fr; }
   .contact a { grid-column: 1; }
-  .edge-nav { right: -175px; }
+  .edge-nav { top: 18vh; right: -175px; height: auto; align-items: flex-start; }
   .edge-nav.is-closed { right: -175px !important; }
   .nav-panel { width: 175px; }
 }

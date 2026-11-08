@@ -4,11 +4,21 @@ const lightbox = document.querySelector('#lightbox');
 const lightboxImage = document.querySelector('#lightbox-image');
 const lightboxCaption = document.querySelector('#lightbox-caption');
 const lightboxClose = document.querySelector('.lightbox-close');
+const paperTexture = document.querySelector('#paper-texture');
+const paperFrames = ['../../assets/paper-1.png', '../../assets/paper-2.png', '../../assets/paper-3.png'];
 const modeSources = {
   light: '../../assets/spikes-bg.mp4',
   dark: '../../assets/liquid-metal-bg.mp4',
   blank: ''
 };
+
+let paperFrameIndex = 0;
+if (paperTexture) {
+  window.setInterval(() => {
+    paperFrameIndex = (paperFrameIndex + 1) % paperFrames.length;
+    paperTexture.style.backgroundImage = `url('${paperFrames[paperFrameIndex]}')`;
+  }, 320);
+}
 
 document.querySelectorAll('.artist-video-card video').forEach((video) => {
   video.muted = false;
@@ -132,14 +142,16 @@ function closeLightbox() {
 document.querySelectorAll('.lightbox-trigger').forEach((trigger) => {
   trigger.addEventListener('click', (event) => {
     event.preventDefault();
+    event.stopPropagation();
     if (!lightbox || !lightboxImage) return;
-    lightboxImage.src = trigger.href;
+    lightboxImage.src = trigger.getAttribute('href');
     lightboxImage.alt = trigger.querySelector('img')?.alt || '';
     if (lightboxCaption) lightboxCaption.textContent = trigger.dataset.caption || '';
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   });
 });
+lightboxImage?.addEventListener('error', closeLightbox);
 lightboxClose?.addEventListener('click', closeLightbox);
 lightbox?.addEventListener('click', (event) => {
   if (event.target === lightbox) closeLightbox();

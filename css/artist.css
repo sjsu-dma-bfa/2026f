@@ -59,11 +59,12 @@
 .artist-hero h1 {
   width: 100%;
   max-width: 100%;
-  margin: 1vh 0 2vh;
+  margin: 2vh 0 4vh;
+  padding-block: .06em .12em;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(44px, 6.25vw, 104px);
   font-weight: 400;
-  line-height: .9;
+  line-height: 1;
   letter-spacing: -.065em;
   overflow-wrap: anywhere;
 }
@@ -133,7 +134,14 @@
 .artist-info h2,
 .artist-progress h2 {
   margin: 0 0 1.4rem;
-  font: 12px var(--mono);
+  font: 700 12px var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.artist-artwork h2 {
+  margin: 0 0 1.4rem;
+  font: 700 12px var(--mono);
   letter-spacing: .08em;
   text-transform: uppercase;
 }
@@ -177,31 +185,55 @@
 }
 
 .artist-gallery figure {
+  position: relative;
   margin: 0;
   min-height: 0;
-  aspect-ratio: 4 / 3;
+  align-self: start;
   overflow: hidden;
-  border-radius: 20px;
+  padding: 12px;
+  border-radius: 28px;
   isolation: isolate;
-  border: 1px solid rgba(222,246,250,.3);
-  background: rgba(13, 29, 38, .92);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 14px 36px rgba(0,0,0,.2);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.artist-gallery figure::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 1px solid rgba(222,246,250,.36);
+  border-radius: inherit;
+  background: rgba(13,29,38,.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 18px 50px rgba(0,0,0,.22);
+  backdrop-filter: url("#liquid-glass-ripple") blur(10px) saturate(1.18);
+  -webkit-backdrop-filter: url("#liquid-glass-ripple") blur(10px) saturate(1.18);
+  pointer-events: none;
+}
+
+.artist-gallery figure > * {
+  position: relative;
+  z-index: 1;
 }
 
 .lightbox-trigger {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  line-height: 0;
+  border-radius: 28px;
+  overflow: hidden;
   cursor: zoom-in;
 }
 
 .artist-gallery img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 0;
   object-fit: contain;
+  border-radius: 28px;
   background: rgba(255,255,255,.06);
   filter: saturate(.76) contrast(1.02);
   transition: transform .45s ease, filter .45s ease;
@@ -213,39 +245,72 @@
 }
 
 .artist-video-card {
+  position: relative;
   display: flex;
   align-items: stretch;
-  background: rgba(13, 29, 38, .92);
+  align-self: start;
+}
+
+.artist-video-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 1px solid rgba(222,246,250,.36);
+  border-radius: inherit;
+  background: rgba(13,29,38,.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 18px 50px rgba(0,0,0,.22);
+  backdrop-filter: url("#liquid-glass-ripple") blur(10px) saturate(1.18);
+  -webkit-backdrop-filter: url("#liquid-glass-ripple") blur(10px) saturate(1.18);
+  pointer-events: none;
+}
+
+.artist-video-card video {
+  position: relative;
+  z-index: 1;
 }
 
 .artist-video-card video {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 220px;
+  height: auto;
+  min-height: 0;
   object-fit: contain;
+  border-radius: 28px;
   background: rgba(0,0,0,.18);
   filter: none;
 }
 
 .mode-light .artist-gallery figure,
 .mode-light .artist-video-card {
-  border-color: rgba(20,47,56,.28);
-  background: rgba(226, 239, 240, .9);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 14px 36px rgba(18,50,58,.16);
+  background: transparent;
+  box-shadow: none;
+}
+
+.mode-light .artist-gallery figure::before,
+.mode-light .artist-video-card::before {
+  border-color: rgba(20,47,56,.3);
+  background: rgba(226,239,240,.46);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 18px 50px rgba(18,50,58,.16);
 }
 
 .mode-blank .artist-gallery figure,
 .mode-blank .artist-video-card {
+  background: transparent;
+  box-shadow: none;
+}
+
+.mode-blank .artist-gallery figure::before,
+.mode-blank .artist-video-card::before {
   border-color: rgba(20,30,34,.3);
-  background: rgba(232, 238, 237, .94);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 36px rgba(0,0,0,.12);
+  background: rgba(232,238,237,.46);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 18px 50px rgba(0,0,0,.12);
 }
 
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 1001;
   display: grid;
   place-items: center;
   padding: 5vw;
@@ -312,12 +377,6 @@
   filter: saturate(.62) contrast(1.08) brightness(.82);
 }
 
-.mode-blank .background-stage,
-.mode-blank .page-graphics,
-.mode-blank .paper-texture {
-  display: none;
-}
-
 @media (min-width: 761px) {
   .artist-headshot {
     object-fit: cover;
@@ -333,8 +392,8 @@
   .artist-headshot { max-height: none; max-width: 100%; }
   .artist-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .artist-gallery figure,
-  .artist-gallery img { min-height: 150px; }
-  .artist-video-card video { min-height: 150px; }
+  .artist-gallery img { min-height: 0; }
+  .artist-video-card video { min-height: 0; }
 }
 
 @media (max-width: 460px) {
