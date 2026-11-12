@@ -98,13 +98,6 @@ function revealGridTransition() {
   window.setTimeout(() => overlay.remove(), 1900);
 }
 
-function resetGridTransition() {
-  document.querySelectorAll('.grid-transition').forEach((overlay) => overlay.remove());
-  sessionStorage.removeItem('afterimage-grid-reveal');
-}
-
-window.addEventListener('pageshow', resetGridTransition);
-
 revealGridTransition();
 
 document.addEventListener('click', (event) => {
@@ -167,16 +160,16 @@ if (afterimageTitle) {
 }
 
 const projects = [
-  ['01', 'AIDEN KHALECK', 'selected work', 'aiden-khaleck'], ['02', 'ANDREA ARELLANO GARCÍA', 'selected work', 'andrea-arellano-garcia'], ['03', 'AUDREY WAI', 'selected work', 'audrey-wai'],
+  ['01', 'AIDEN KHALECK', 'selected work', 'aiden-khaleck'], ['02', 'ANDREA ARELLANO GARCIA', 'selected work', 'andrea-arellano-garcia'], ['03', 'AUDREY WAI', 'selected work', 'audrey-wai'],
   ['04', 'BRANDON VUONG', 'selected work', 'brandon-vuong'], ['05', 'DARIA ORLOVA', 'selected work', 'daria-orlova'], ['06', 'DAVID PEREZ GARCIA', 'selected work', 'david-perez-garcia'],
   ['07', 'DENIELLE SAMBILAY', 'selected work', 'denielle-sambilay'], ['08', 'EMILY CHAING', 'selected work', 'emily-chaing'], ['09', 'ETHAN KAMIGAKI', 'selected work', 'ethan-kamigaki'],
-  ['10', 'EVELYN PALMENO', 'selected work', 'evelyn-evee-palmeno'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work', 'jocelyn-monreal-velazquez'], ['12', 'JOVANNY LICONA', 'selected work', 'jovanny-licona'],
+  ['10', 'EVELYN (EVEE) PALMENO', 'selected work', 'evelyn-evee-palmeno'], ['11', 'JOCELYN MONREAL-VELAZQUEZ', 'selected work', 'jocelyn-monreal-velazquez'], ['12', 'JOVANNY LICONA', 'selected work', 'jovanny-licona'],
   ['13', 'JUPITER KASLER', 'selected work', 'jupiter-kasler'], ['14', 'KATY YURASH', 'selected work', 'katy-yurash'], ['15', 'KYRA JONES', 'selected work', 'kyra-jones'],
-  ['16', 'LAUREN ANDERSON', 'selected work', 'lauren-anderson'], ['17', 'LEAH STEVENS', 'selected work', 'leah-stevens'], ['18', 'MINH LE', 'selected work', 'minh-le'],
-  ['19', 'NABEEHA AHSAN', 'selected work', 'nabeehan-ahsan'], ['20', 'NGAN VU', 'selected work', 'ngan-vu'], ['21', 'NOH FEKRE', 'selected work', 'noh-fekre'],
-  ['22', 'PHIN NGUYEN', 'selected work', 'phin-nguyen'], ['23', 'ROSALVA JIMÉNEZ', 'selected work', 'rosalva-jimenez-martinez'], ['24', 'RYAN NIKOPOUR', 'selected work', 'ryan-nikopour'],
-  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work', 'sean-cruz-colatriano'], ['26', 'SYDNEY-ANN ETO', 'selected work', 'sydney-ann-etq'], ['27', 'SYDNEY SILVA', 'selected work', 'sydney-silva'],
-  ['28', 'TRISTAN HUYHN', 'selected work', 'tristan-huynh'], ['29', 'WENYU LIN', 'selected work', 'wenyu-lin'], ['30', 'YANHENG MA', 'selected work', 'yanheng-ma'], ['31', 'ZUKA ISTANBOOY', 'selected work', 'zuka-istanbooly']
+  ['16', 'LAUREN ANDERSON', 'selected work', 'lauren-anderson'], ['17', 'LEAH STEVENS', 'selected work', 'leah-stevens'], ['18', 'NHAT MINH LE', 'selected work', 'minh-le'],
+  ['19', 'NABEEHA AHSAN', 'selected work', 'nabeeha-ahsan'], ['20', 'NGAN VU', 'selected work', 'ngan-vu'], ['21', 'NOH FEKRE', 'selected work', 'noh-fekre'],
+  ['22', 'PHIN NGUYEN', 'selected work', 'phin-nguyen'], ['23', 'ROSALVA JIMÉNEZ MARTÍNEZ', 'selected work', 'rosalva-jimenez-martinez'], ['24', 'RYAN NIKOPOUR', 'selected work', 'ryan-nikopour'],
+  ['25', 'SEAN CRUZ-COLATRIANO', 'selected work', 'sean-cruz-colatriano'], ['26', 'SYDNEY ETO', 'selected work', 'sydney-ann-etq'], ['27', 'SYDNEY SILVA', 'selected work', 'sydney-silva'],
+  ['28', 'TRISTAN HUYNH', 'selected work', 'tristan-huynh'], ['29', 'WENYU LIN', 'selected work', 'wenyu-lin'], ['30', 'YANHENG MA', 'selected work', 'yanheng-ma'], ['31', 'ZUKA ISTANBOOLY', 'selected work', 'zuka-istanbooly']
 ];
 
 function renderProjects(query = '') {

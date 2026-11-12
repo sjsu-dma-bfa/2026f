@@ -160,6 +160,29 @@
   text-transform: uppercase;
 }
 
+.artist-socials {
+  margin: 1.5rem 0 0;
+  font: 12px/1.55 var(--mono);
+  overflow-wrap: anywhere;
+}
+
+.artist-socials span {
+  display: inline-block;
+  margin-bottom: .35rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.artist-socials a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.artist-socials a:hover {
+  color: var(--soft-blue);
+}
+
 .artist-artwork {
   border-top: 1px solid var(--line);
   padding: 3vh 0 9vh;
